@@ -24,7 +24,9 @@ interface DataInput {
     pay_amt5: number;
     pay_amt6: number;
     default_payment_next_month: number;
-}
+    AVRG_PAY?: number;  // Optional since it may not exist initially
+    AVRG_BILL?: number; // Optional since it may not exist initially
+};
 
 function calculateAverages(dataArray: DataInput[]) {
     console.log("Data array received by calculateAverages:", dataArray);
@@ -34,12 +36,12 @@ function calculateAverages(dataArray: DataInput[]) {
 
     dataArray.forEach(data => {
         const avgPay = (
-          data.pay_0 +
-          data.pay_2 +
-          data.pay_3 +
-          data.pay_4 +
-          data.pay_5 +
-          data.pay_6
+          data.pay_amt1 +
+          data.pay_amt2 +
+          data.pay_amt3 +
+          data.pay_amt4 +
+          data.pay_amt5 +
+          data.pay_amt6
         ) / 6;
       
         const avgBill = (

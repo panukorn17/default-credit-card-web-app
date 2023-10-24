@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchData } from '../api/DatabaseService';
 import '../styles/TableStyles.css';
+import { calculateAverages } from '../utils/dataProcessing';
 
 type DataFetchingComponentProps = {
     setOriginalData: React.Dispatch<React.SetStateAction<any>>;
@@ -32,11 +33,13 @@ interface TableRow {
     pay_amt5: number;
     pay_amt6: number;
     default_payment_next_month: number;
+    AVRG_PAY?: number;
+    AVRG_BILL?: number;
 }
 
 function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) {
     // Declare a state variable to hold the fetched data
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<TableRow[] | null>(null);
     // Declare another state variable for error handling (optional but recommended)
     const [error, setError] = useState<string | null>(null);
 
@@ -45,8 +48,15 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
         (async () => {
             try {
                 const fetchedData = await fetchData();
-                setData(fetchedData.slice(0, 10));
-                setOriginalData(fetchedData); // Set the fetched data using the function from props
+                const processedData = calculateAverages(fetchedData); // Convert the original data
+                // Merge original and processed data
+                const averagedData = fetchedData.map((data: TableRow, index: number) => ({
+                    ...data,
+                    AVRG_PAY: processedData.AVRG_PAY[index],
+                    AVRG_BILL: processedData.AVRG_BILL[index],
+                }));
+                setData(averagedData.slice(0, 10));
+                setOriginalData(averagedData); // Set the fetched data using the function from props
             } catch (err) {
                 setError("Failed to fetch data");
                 console.error(err);

@@ -13,28 +13,45 @@ interface ScatterPlotProps {
     title: string;
     predictions: number[];
     hasFetchedPredictions: boolean;
+    xlabel?: string;
+    ylabel?: string;
 }
 
-const ScatterPlot: React.FC<ScatterPlotProps> = ({ predictions, hasFetchedPredictions, width, height, data, xAccessor, yAccessor, title }) => {
+const ScatterPlot: React.FC<ScatterPlotProps> = ({ 
+    predictions, 
+    hasFetchedPredictions, 
+    width, 
+    height, 
+    data, 
+    xAccessor, 
+    yAccessor, 
+    title,
+    xlabel = '', 
+    ylabel = '' }) => {
     // Guard against null or undefined data
     if (!data) {
         return null; // or some fallback UI
     }
+    // Define Margins
+    const margin = { top: 20, right: 30, bottom: 50, left: 70 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
     // Define scales
     const xScale = scaleLinear({
         domain: [
-            Math.min(...data.map(d => xAccessor(d) || 0)), 
-            Math.max(...data.map(d => xAccessor(d) || 0))
+            0, 
+            800_000
         ],
-        range: [0, width],
+        range: [0, innerWidth],
     });
 
     const yScale = scaleLinear({
         domain: [
-            Math.min(...data.map(d => yAccessor(d) || 0)), 
-            Math.max(...data.map(d => yAccessor(d) || 0))
+            0, 
+            200_000
         ],
-        range: [height, 0], 
+        range: [innerHeight, 0], 
     });
 
     const getColorFromPrediction = (prediction: number) => {
@@ -57,7 +74,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({ predictions, hasFetchedPredic
         <div>
             <h3>{title}</h3>
             <svg width={width} height={height}>
-                <Group left={40} top={20}>
+                <Group left={margin.left} top={margin.top}>
                     {Array.isArray(data) && data.map((d, i) => (
                         <Circle
                             key={i}
@@ -68,8 +85,27 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({ predictions, hasFetchedPredic
                             opacity={0.3}
                         />
                     ))}
-                    <AxisBottom top={height - 40} scale={xScale} />
+                    <AxisBottom top={innerHeight} scale={xScale} />
                     <AxisLeft scale={yScale} />
+
+                    {/* X Axis Title */}
+                    <text
+                        className="axis-title"
+                        textAnchor="middle"
+                        transform={`translate(${-margin.left},${innerHeight / 2}) rotate(-90)`}
+                        dy=".71em"
+                    >
+                        {xlabel}
+                    </text>
+
+                    {/* Y Axis Title */}
+                    <text
+                        className="axis-title"
+                        textAnchor="middle"
+                        transform={`translate(${innerWidth / 2},${innerHeight + margin.bottom*0.9})`}
+                    >
+                        {ylabel}
+                    </text>
                 </Group>
             </svg>
         </div>
@@ -80,6 +116,8 @@ ScatterPlot.defaultProps = {
     data: [],
     predictions: [],
     hasFetchedPredictions: false,
+    xlabel: '',
+    ylabel: '',
 };
 
 export default ScatterPlot;
