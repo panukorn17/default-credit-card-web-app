@@ -57,7 +57,7 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
     // Render the fetched data or an error message if there was an error
     return (
         <div>
-        {data.length > 0 ? (
+        {data && data.length > 0 ? (
             <table>
                 <thead>
                     <tr>
