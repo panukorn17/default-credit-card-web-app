@@ -7,8 +7,8 @@ function ParentComponent() {
     
     return (
         <div>
-            <DataFetchingComponent setOriginalData={setOriginalData} />
             <PredictionComponent originalData={originalData} />
+            <DataFetchingComponent setOriginalData={setOriginalData} />
         </div>
     );
 }

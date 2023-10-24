@@ -29,7 +29,6 @@ interface DataInput {
 };
 
 function calculateAverages(dataArray: DataInput[]) {
-    console.log("Data array received by calculateAverages:", dataArray);
     const avgPayList: number[] = [];
     const avgBillList: number[] = [];
     const limitBalList: number[] = [];

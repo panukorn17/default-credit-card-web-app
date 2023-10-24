@@ -66,21 +66,23 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
 
     // Render the fetched data or an error message if there was an error
     return (
-        <div>
+		<div className="p-8 mt-6 lg:mt-0 bg-white overflow-x-auto">
         {data && data.length > 0 ? (
-            <table>
-                <thead>
+            <table className="min-w-full text-left text-sm font-light">
+                <thead className="border-b bg-neutral-50 font-medium dark:border-neutral-500">
                     <tr>
                         {Object.keys(data[0]).map((key, index) => (
-                            <th key={index}>{key}</th>
+                            <th className="px-6 py-4" key={index}>{key}</th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((row: TableRow, rowIndex: number) => (
-                        <tr key={rowIndex}>
+                        <tr 
+                        className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" 
+                        key={rowIndex}>
                             {Object.values(row).map((value, valueIndex) => (
-                                <td key={valueIndex}>{value}</td>
+                                <td className="whitespace-nowrap px-6 py-4" key={valueIndex}>{value}</td>
                             ))}
                         </tr>
                     ))}

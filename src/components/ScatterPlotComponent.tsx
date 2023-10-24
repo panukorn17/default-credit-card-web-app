@@ -15,6 +15,7 @@ interface ScatterPlotProps {
     hasFetchedPredictions: boolean;
     xlabel?: string;
     ylabel?: string;
+    className?: string;
 }
 
 const ScatterPlot: React.FC<ScatterPlotProps> = ({ 
@@ -60,20 +61,20 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
         }
         switch (prediction) {
             case 0:
-                return 'red';
+                return '#0066ff';
             case 1:
-                return 'green';
+                return '#ccff66';
             case 2:
-                return 'blue';
+                return '#ffcc00';
             default:
                 return 'steelblue';
         }
     };
 
     return (
-        <div>
-            <h3>{title}</h3>
-            <svg width={width} height={height}>
+        <div className="p-4">
+            <h3 className="text-lg text-gray-800 font-semibold">{title}</h3>
+            <svg width={width} height={height} className="rounded">
                 <Group left={margin.left} top={margin.top}>
                     {Array.isArray(data) && data.map((d, i) => (
                         <Circle
@@ -90,7 +91,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
 
                     {/* X Axis Title */}
                     <text
-                        className="axis-title"
+                        className="text-gray-800 font-semibold"
                         textAnchor="middle"
                         transform={`translate(${-margin.left},${innerHeight / 2}) rotate(-90)`}
                         dy=".71em"
@@ -100,7 +101,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
 
                     {/* Y Axis Title */}
                     <text
-                        className="axis-title"
+                        className="text-gray-800 font-semibold"
                         textAnchor="middle"
                         transform={`translate(${innerWidth / 2},${innerHeight + margin.bottom*0.9})`}
                     >
