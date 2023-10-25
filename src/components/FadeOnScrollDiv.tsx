@@ -11,7 +11,7 @@ const FadeOnScrollDiv: React.FC<SectionProps> = ({ children }) => {
                 const targetElement = entry.target as HTMLDivElement;
                 
                 // Use the intersection ratio to adjust opacity smoothly
-                targetElement.style.opacity = `${Math.pow(entry.intersectionRatio, 3)}`; // Using cube to fade faster 
+                targetElement.style.opacity = `${Math.pow(entry.intersectionRatio, 2)}`; // Using cube to fade faster 
                 
             },
             {

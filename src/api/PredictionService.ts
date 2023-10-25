@@ -8,10 +8,10 @@ const predictionURL = process.env.REACT_APP_PREDICTION_URL;
 async function makePrediction(data: any) {
     try {
         const response = await axios.post(predictionURL, data);
-        return response.data;  // Assuming the predictions are in the response data
+        return response.data;
     } catch (error) {
         console.error("Error sending data for prediction:", error);
-        throw error;  // You might want to handle this differently based on your needs
+        throw error;
     }
 }
 

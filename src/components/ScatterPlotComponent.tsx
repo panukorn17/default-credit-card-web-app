@@ -13,6 +13,7 @@ interface ScatterPlotProps {
     title: string;
     predictions: number[];
     hasFetchedPredictions: Boolean;
+    showLegend?: boolean;
     xlabel?: string;
     ylabel?: string;
     className?: string;
@@ -43,6 +44,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
     xAccessor, 
     yAccessor,
     hasFetchedPredictions,
+    showLegend,
     title,
     xlabel = '', 
     ylabel = '' }) => {
@@ -51,6 +53,9 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
     const margin = { top: 20, right: 30, bottom: 50, left: 70 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
+
+    // Define ticks
+    const xTicks = useMemo(() => Array.from({ length: 8 }, (_, i) => i * 100_000), []);
     
     // Define scales
     const xScale = useMemo(() => scaleLinear({
@@ -58,13 +63,17 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
         range: [0, innerWidth],
     }), [innerWidth]);
 
-    const xTicks = useMemo(() => Array.from({ length: 8 }, (_, i) => i * 100_000), []);
-
     const yScale = useMemo(() => scaleLinear({
         domain: [0, 150_000],
         range: [innerHeight, 0],
     }), [innerHeight]);
 
+    // Legend data
+    const legendData = [
+        { label: 'Cluster 1', color: '#0066ff' },
+        { label: 'Cluster 2', color: '#ccff66' },
+        { label: 'Cluster 3', color: '#ffcc00' },
+    ];
     // Guard against null or undefined data
     if (!data) {
         return null; // or some fallback UI
@@ -106,6 +115,19 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
                     >
                         {ylabel}
                     </text>
+                    {/* Conditional rendering of the legend */}
+                    {showLegend && (
+                        <Group transform={`translate(${innerWidth - 150}, 0)`}> 
+                            {legendData.map((entry, index) => (
+                                <Group key={index} transform={`translate(0, ${index * 20})`}>
+                                    <rect width={10} height={10} fill={entry.color} />
+                                    <text x={20} y={12} className="text-xs text-gray-800 font-semibold">
+                                        {entry.label}
+                                    </text>
+                                </Group>
+                            ))}
+                        </Group>
+                    )}
                 </Group>
             </svg>
         </div>
