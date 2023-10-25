@@ -37,6 +37,34 @@ interface TableRow {
     AVRG_BILL?: number;
 }
 
+const tableHeaders = [  'ID',
+                        'Given Credit NT$',
+                        'Gender',
+                        'Education',
+                        'Marital Status',
+                        'Age',
+                        'Pay Status (Apr)',
+                        'Pay Status (May)',
+                        'Pay Status (Jun)',
+                        'Pay Status (Jul)',
+                        'Pay Status (Aug)',
+                        'Pay Status (Sep)',
+                        'Bill Amount NT$ (Apr)',
+                        'Bill Amount NT$ (May)',
+                        'Bill Amount NT$ (Jun)',
+                        'Bill Amount NT$ (Jul)',
+                        'Bill Amount NT$ (Aug)',
+                        'Bill Amount NT$ (Sep)',
+                        'Pay Amount NT$ (Apr)',
+                        'Pay Amount NT$ (May)',
+                        'Pay Amount NT$ (Jun)',
+                        'Pay Amount NT$ (Jul)',
+                        'Pay Amount NT$ (Aug)',
+                        'Pay Amount NT$ (Sep)',
+                        'Default Payment in October',
+                        'Average Payment NT$ (Apr-Sep)',
+                        'Average Bill NT$ (Apr-Sep)'];
+
 function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) {
     // Declare a state variable to hold the fetched data
     const [data, setData] = useState<TableRow[] | null>(null);
@@ -56,7 +84,7 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
                     AVRG_BILL: processedData.AVRG_BILL[index],
                 }));
                 setData(averagedData.slice(0, 10));
-                setOriginalData(averagedData); // Set the fetched data using the function from props
+                setOriginalData(averagedData.slice(0,8000)); // Set the fetched data using the function from props
             } catch (err) {
                 setError("Failed to fetch data");
                 console.error(err);
@@ -69,17 +97,17 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
 		<div className="p-8 mt-6 lg:mt-0 bg-white overflow-x-auto">
         {data && data.length > 0 ? (
             <table className="min-w-full text-left text-sm font-light">
-                <thead className="border-b bg-neutral-50 font-medium dark:border-neutral-500">
+                <thead className="text-center w-1/12 border-b bg-neutral-50 font-medium dark:border-neutral-500">
                     <tr>
-                        {Object.keys(data[0]).map((key, index) => (
-                            <th className="px-6 py-4" key={index}>{key}</th>
+                        {Object.keys(tableHeaders).map((key, index) => (
+                            <th className="px-6 py-4" key={index}>{tableHeaders[index]}</th>
                         ))}
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((row: TableRow, rowIndex: number) => (
                         <tr 
-                        className="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" 
+                        className="text-center w-1/12 border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600" 
                         key={rowIndex}>
                             {Object.values(row).map((value, valueIndex) => (
                                 <td className="whitespace-nowrap px-6 py-4" key={valueIndex}>{value}</td>

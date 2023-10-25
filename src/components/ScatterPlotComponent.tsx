@@ -54,12 +54,14 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
     
     // Define scales
     const xScale = useMemo(() => scaleLinear({
-        domain: [0, 800_000],
+        domain: [0, 700_000],
         range: [0, innerWidth],
     }), [innerWidth]);
-    
+
+    const xTicks = useMemo(() => Array.from({ length: 8 }, (_, i) => i * 100_000), []);
+
     const yScale = useMemo(() => scaleLinear({
-        domain: [0, 200_000],
+        domain: [0, 150_000],
         range: [innerHeight, 0],
     }), [innerHeight]);
 
@@ -83,7 +85,7 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
                             opacity={0.3}
                         />
                     ))}
-                    <AxisBottom top={innerHeight} scale={xScale} />
+                    <AxisBottom top={innerHeight} scale={xScale} tickValues={xTicks}/>
                     <AxisLeft scale={yScale} />
 
                     {/* X Axis Title */}

@@ -34,23 +34,23 @@ function calculateAverages(dataArray: DataInput[]) {
     const limitBalList: number[] = [];
 
     dataArray.forEach(data => {
-        const avgPay = (
-          data.pay_amt1 +
+        const avgPay = Math.round(
+          (data.pay_amt1 +
           data.pay_amt2 +
           data.pay_amt3 +
           data.pay_amt4 +
           data.pay_amt5 +
-          data.pay_amt6
-        ) / 6;
+          data.pay_amt6) / 6
+        );
       
-        const avgBill = (
-          data.bill_amt1 +
+        const avgBill = Math.round(
+          (data.bill_amt1 +
           data.bill_amt2 +
           data.bill_amt3 +
           data.bill_amt4 +
           data.bill_amt5 +
-          data.bill_amt6
-        ) / 6;
+          data.bill_amt6) / 6
+        );
 
         avgPayList.push(avgPay);
         avgBillList.push(avgBill);
