@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { scaleLinear } from '@visx/scale';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { Group } from '@visx/group';
@@ -12,64 +12,61 @@ interface ScatterPlotProps {
     yAccessor: (d: any) => number;
     title: string;
     predictions: number[];
-    hasFetchedPredictions: boolean;
+    hasFetchedPredictions: Boolean;
     xlabel?: string;
     ylabel?: string;
     className?: string;
 }
 
+
+const determineColorFromPrediction  = (prediction: number, hasFetchedPredictions:Boolean) => {
+    if (!hasFetchedPredictions) {
+        return 'steelblue'; // Default color if predictions haven't been fetched
+    }
+    switch (prediction) {
+        case 0:
+            return '#0066ff';
+        case 1:
+            return '#ccff66';
+        case 2:
+            return '#ffcc00';
+        default:
+            return 'steelblue';
+    }
+};
+
 const ScatterPlot: React.FC<ScatterPlotProps> = ({ 
     predictions, 
-    hasFetchedPredictions, 
     width, 
     height, 
     data, 
     xAccessor, 
-    yAccessor, 
+    yAccessor,
+    hasFetchedPredictions,
     title,
     xlabel = '', 
     ylabel = '' }) => {
-    // Guard against null or undefined data
-    if (!data) {
-        return null; // or some fallback UI
-    }
+        
     // Define Margins
     const margin = { top: 20, right: 30, bottom: 50, left: 70 };
     const innerWidth = width - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
-
+    
     // Define scales
-    const xScale = scaleLinear({
-        domain: [
-            0, 
-            800_000
-        ],
+    const xScale = useMemo(() => scaleLinear({
+        domain: [0, 800_000],
         range: [0, innerWidth],
-    });
+    }), [innerWidth]);
+    
+    const yScale = useMemo(() => scaleLinear({
+        domain: [0, 200_000],
+        range: [innerHeight, 0],
+    }), [innerHeight]);
 
-    const yScale = scaleLinear({
-        domain: [
-            0, 
-            200_000
-        ],
-        range: [innerHeight, 0], 
-    });
-
-    const getColorFromPrediction = (prediction: number) => {
-        if (!hasFetchedPredictions) {
-            return 'steelblue'; // Default color if predictions haven't been fetched
-        }
-        switch (prediction) {
-            case 0:
-                return '#0066ff';
-            case 1:
-                return '#ccff66';
-            case 2:
-                return '#ffcc00';
-            default:
-                return 'steelblue';
-        }
-    };
+    // Guard against null or undefined data
+    if (!data) {
+        return null; // or some fallback UI
+    }
 
     return (
         <div className="p-4">
@@ -81,8 +78,8 @@ const ScatterPlot: React.FC<ScatterPlotProps> = ({
                             key={i}
                             cx={xScale(xAccessor(d))}
                             cy={yScale(yAccessor(d))}
-                            r={4}
-                            fill={predictions && predictions.length > i ? getColorFromPrediction(predictions[i]) : 'steelblue'}
+                            r={2}
+                            fill={predictions && predictions.length > i ? determineColorFromPrediction(predictions[i], hasFetchedPredictions) : 'steelblue'}
                             opacity={0.3}
                         />
                     ))}

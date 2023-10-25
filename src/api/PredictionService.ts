@@ -6,7 +6,6 @@ if (!process.env.REACT_APP_PREDICTION_URL) {
 const predictionURL = process.env.REACT_APP_PREDICTION_URL;
 
 async function makePrediction(data: any) {
-    console.log("Data received by makePrediction:", data);
     try {
         const response = await axios.post(predictionURL, data);
         return response.data;  // Assuming the predictions are in the response data
