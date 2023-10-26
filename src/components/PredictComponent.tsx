@@ -194,9 +194,9 @@ const PredictionComponent: React.FC<PredictionComponentProps> = ({ originalData 
                             </div>
                             <h2 className="text-5xl p-5 text-bold">Further Analysis and Implications</h2>
                             <div className="text-xl p-5 text-bold justify-text"> 
-                                <p className="px-5">Further examination of the financial behaviours of individuals with lower credit limits, payments and education levels may help <a className="font-medium text-green-400 dark:text-green-300">improve understanding of the underlying causes of default</a>.</p> 
-                                <p className="px-5">Financial products and credit limit/card offers can be devised with these insights. For example, <a className="font-medium text-green-400 dark:text-green-300">financial literacy programs can be offered to high-risk individuals to mitigate the risk of default</a>.</p> 
-                                <p className="px-5">Further statistical tests can be done to <a className="font-medium text-green-400 dark:text-green-300">validate the characteristics of individuals with a higher risk of default</a>.</p>
+                                <p className="px-5">Further examination of the financial behaviours of individuals with lower credit limits, payments and education levels may help <a className="font-medium text-red-400 dark:text-red-300">improve understanding of the underlying causes of default</a>.</p> 
+                                <p className="px-5">Financial products and credit limit/card offers can be devised with these insights. For example, <a className="font-medium text-red-400 dark:text-red-300">financial literacy programs can be offered to high-risk individuals to mitigate the risk of default</a>.</p> 
+                                <p className="px-5">Further statistical tests can be done to <a className="font-medium text-red-400 dark:text-red-300">validate the characteristics of individuals with a higher risk of default</a>.</p>
                             </div>
                         </div>
                     </FadeOnScrollDiv>
