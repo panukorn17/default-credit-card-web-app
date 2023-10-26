@@ -76,6 +76,11 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
         (async () => {
             try {
                 const fetchedData = await fetchData();
+                // Check if data is not empty
+                if (fetchedData.length === 0) {
+                    setError("No data available.");
+                    return;
+                }
                 const processedData = calculateAverages(fetchedData); // Convert the original data
                 // Merge original and processed data
                 const averagedData = fetchedData.map((data: TableRow, index: number) => ({
@@ -84,13 +89,13 @@ function DataFetchingComponent({ setOriginalData }: DataFetchingComponentProps) 
                     AVRG_BILL: processedData.AVRG_BILL[index],
                 }));
                 setData(averagedData.slice(0, 10));
-                setOriginalData(averagedData.slice(0,8000)); // Set the fetched data using the function from props
+                setOriginalData(averagedData); // Set the fetched data using the function from props
             } catch (err) {
                 setError("Failed to fetch data");
                 console.error(err);
             }
         })();
-    }, [setOriginalData]);  // Added setOriginalData to dependency array since it's being used inside useEffect
+    }, [setOriginalData]);
 
     // Render the fetched data or an error message if there was an error
     return (
