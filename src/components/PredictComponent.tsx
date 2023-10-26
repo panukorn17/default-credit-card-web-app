@@ -178,26 +178,26 @@ const PredictionComponent: React.FC<PredictionComponentProps> = ({ originalData 
                     </div>
                     <FadeOnScrollDiv>
                         <div className="App-fullscreen">
-                        <h2 className="text-5xl p-5 text-bold">Insights</h2>
-                        <div className="text-xl p-5 justify-text">
-                            <h3 className="text-3xl pl-5 text-bold">Education level and defaulting</h3>
-                            <p className="p-5">
-                            Graduate School and University education level: Individuals with graduate-level and university level-education have a wide range of credit limits.
-                            They also tend to have higher monthly payment amounts, with a significant proportion classified as <a className="font-medium text-blue-600 dark:text-blue-500">cluster 1</a>.
-                            This may imply that those with this level of education are more financially stable and are less likely to default on their payments.
-                            </p>
-                            <p className="p-5">
-                            High School  education level: Individuals with high school education have a lower credit limit, with their monthly payments relatively dispersed.
-                            There is a significant proportion classified as <a className="font-medium text-green-400 dark:text-green-300">cluster 2</a> and <a className="font-medium text-orange-600 dark:text-orange-500">cluster 3</a>.
-                            This may imply that those with this level of education are less financially stable and are more likely to default on their payments.
-                            </p>
-                        </div>
-                        <h2 className="text-5xl p-5 text-bold">Further Analysis and Implications</h2>
-                        <div className="text-xl p-5 text-bold justify-text"> 
-                            <p className="px-5">Further examination of the financial behaviours of individuals with lower credit limits, payments and education levels may help <a className="font-medium text-green-400 dark:text-green-300">improve understanding of the underlying causes of default</a>.</p> 
-                            <p className="px-5">Financial products and credit limit/card offers can be devised with these insights. For example, <a className="font-medium text-green-400 dark:text-green-300">financial literacy programs can be offered to high-risk individuals to mitigate the risk of default</a>.</p> 
-                            <p className="px-5">Further statistical tests can be done to <a className="font-medium text-green-400 dark:text-green-300">validate the characteristics of individuals with a higher risk of default</a>.</p>
-                        </div>
+                            <h2 className="text-5xl p-5 text-bold">Insights</h2>
+                            <div className="text-xl p-5 justify-text">
+                                <h3 className="text-3xl pl-5 text-bold">Education level and defaulting</h3>
+                                <p className="p-5">
+                                Graduate School and University education level: Individuals with graduate-level and university level-education have a wide range of credit limits.
+                                They also tend to have higher monthly payment amounts, with a significant proportion classified as <a className="font-medium text-blue-600 dark:text-blue-500">cluster 1</a>.
+                                This may imply that those with this level of education are more financially stable and are less likely to default on their payments.
+                                </p>
+                                <p className="p-5">
+                                High School  education level: Individuals with high school education have a lower credit limit, with their monthly payments relatively dispersed.
+                                There is a significant proportion classified as <a className="font-medium text-green-400 dark:text-green-300">cluster 2</a> and <a className="font-medium text-orange-600 dark:text-orange-500">cluster 3</a>.
+                                This may imply that those with this level of education are less financially stable and are more likely to default on their payments.
+                                </p>
+                            </div>
+                            <h2 className="text-5xl p-5 text-bold">Further Analysis and Implications</h2>
+                            <div className="text-xl p-5 text-bold justify-text"> 
+                                <p className="px-5">Further examination of the financial behaviours of individuals with lower credit limits, payments and education levels may help <a className="font-medium text-green-400 dark:text-green-300">improve understanding of the underlying causes of default</a>.</p> 
+                                <p className="px-5">Financial products and credit limit/card offers can be devised with these insights. For example, <a className="font-medium text-green-400 dark:text-green-300">financial literacy programs can be offered to high-risk individuals to mitigate the risk of default</a>.</p> 
+                                <p className="px-5">Further statistical tests can be done to <a className="font-medium text-green-400 dark:text-green-300">validate the characteristics of individuals with a higher risk of default</a>.</p>
+                            </div>
                         </div>
                     </FadeOnScrollDiv>
                 </div>
