@@ -19,7 +19,7 @@ const App: React.FC = () => {
           <div className="text-xl p-5 justify-text">
             <p className="p-5">
               This project uses a Gaussian Mixture Model with three mixture components to explore credit default data.
-              The data contains information about 30,000 credit card holders in Taiwan from April to September (<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients" target="_blank" rel="noopener noreferrer">source</a>).
+              The data contains information about 30,000 credit card holders in Taiwan from April to September 2005 (<a className="font-medium text-blue-600 dark:text-blue-500 hover:underline" href="https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients" target="_blank" rel="noopener noreferrer">source</a>).
               The currency of the data is New Taiwan dollars (NT$) which is equivalent to about 0.025 GBP. 
               The purpose of this analysis is exploratory. 
               By clustering the data, we can identify patterns and gain insights into the credit card holders.
