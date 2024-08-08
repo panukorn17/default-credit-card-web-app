@@ -1,4 +1,4 @@
-# Getting Started with this Default Project
+# Getting Started with this Credit Card Default Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
