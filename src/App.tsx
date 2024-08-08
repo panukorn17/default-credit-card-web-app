@@ -28,11 +28,13 @@ const App: React.FC = () => {
             </p>
             <p className="p-5">
               The Gaussian Mixture Model is trained on and takes in the following features as inputs:
-              <ol className="list-disc list-inside py-2">
-                <li>Credit Limit (NT$)</li>
-                <li>Average Bill Amount (NT$) from April to September</li>
-                <li>Average Payment Amount (NT$) from April to September</li>
-              </ol>
+            </p>
+            <ol className="list-disc list-inside py-2">
+              <li>Credit Limit (NT$)</li>
+              <li>Average Bill Amount (NT$) from April to September</li>
+              <li>Average Payment Amount (NT$) from April to September</li>
+            </ol>
+            <p className="p-5">
               The following sections include the analysis and visualisations of the data.
               The scatter plots are categorised by credit card holders that defaulted on their payments and those that did not as well as their education level.
               To make predictions on the data using the trained model and visualise the results, click the <a className="font-medium text-green-600 dark:text-green-500">Predict</a> button below.
